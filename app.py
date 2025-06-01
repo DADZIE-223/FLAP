@@ -4,13 +4,12 @@ app = Flask(__name__)
 
 @app.route("/ussd", methods=["POST"])
 def ussd():
-    session_id = request.form.get("sessionId")
-    service_code = request.form.get("serviceCode")
-    phone_number = request.form.get("phoneNumber")
+    session_id = request.form.get("sessionId", "")
+    service_code = request.form.get("serviceCode", "")
+    phone_number = request.form.get("phoneNumber", "")
     text = request.form.get("text", "")
 
-    print("USSD request received:")
-    print(f"Session: {session_id}, Code: {service_code}, Phone: {phone_number}, Text: {text}")
+    print("Text received:", text)
 
     if text == "":
         response = "CON Welcome to Flap Market\n1. View Products\n2. Exit"
